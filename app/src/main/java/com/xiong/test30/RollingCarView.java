@@ -14,7 +14,9 @@ import android.view.ViewConfiguration;
 import android.widget.Scroller;
 
 /**
- * Created by heqiang on 16-12-15.
+ * @author: xiong
+ * @time: 2017/11/01
+ * @说明:
  */
 public class RollingCarView extends View {
 

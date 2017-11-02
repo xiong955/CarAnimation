@@ -4,6 +4,11 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
+/**
+ * @author: xiong
+ * @time: 2017/10/30
+ * @说明:
+ */
 public class IntentActivity extends AppCompatActivity {
 
     @Override

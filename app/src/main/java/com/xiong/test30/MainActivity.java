@@ -10,6 +10,12 @@ import android.widget.ImageView;
 
 import com.xiong.test30.wdiget.CarView;
 
+/**
+ * @author: xiong
+ * @time: 2017/10/30
+ * @说明:
+ */
+
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     private CarView rl;
