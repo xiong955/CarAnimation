@@ -1,0 +1,280 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:src="#000000">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.xiong.test30.wdiget.CartView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <LinearLayout
+            android:id="@+id/ll"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            android:orientation="vertical">
+
+            <com.xiong.test30.wdiget.CarView
+                android:id="@+id/rl"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="right">
+
+                <ImageView
+                    android:id="@+id/fire"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="-6dp"
+                    android:layout_marginTop="33dp"
+                    android:layout_toEndOf="@+id/iv"
+                    android:layout_toRightOf="@+id/iv" />
+
+                <ImageView
+                    android:id="@+id/iv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="28dp"
+                    android:src="@drawable/che" />
+
+            </com.xiong.test30.wdiget.CarView>
+
+            <com.xiong.test30.wdiget.CarView
+                android:id="@+id/rl2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="-5dp"
+                android:gravity="right">
+
+                <ImageView
+                    android:id="@+id/fire2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="-6dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_toEndOf="@+id/iv2"
+                    android:layout_toRightOf="@+id/iv2" />
+
+                <ImageView
+                    android:id="@+id/iv2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/che2" />
+
+            </com.xiong.test30.wdiget.CarView>
+
+            <com.xiong.test30.wdiget.CarView
+                android:id="@+id/rl3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="-5dp"
+                android:gravity="right">
+
+                <ImageView
+                    android:id="@+id/fire3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="-6dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_toEndOf="@+id/iv3"
+                    android:layout_toRightOf="@+id/iv3" />
+
+                <ImageView
+                    android:id="@+id/iv3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/che3" />
+
+            </com.xiong.test30.wdiget.CarView>
+
+            <com.xiong.test30.wdiget.CarView
+                android:id="@+id/rl4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="-5dp"
+                android:gravity="right">
+
+                <ImageView
+                    android:id="@+id/fire4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="-6dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_toEndOf="@+id/iv4"
+                    android:layout_toRightOf="@+id/iv4" />
+
+                <ImageView
+                    android:id="@+id/iv4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/che4" />
+
+            </com.xiong.test30.wdiget.CarView>
+
+            <com.xiong.test30.wdiget.CarView
+                android:id="@+id/rl5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="-5dp"
+                android:gravity="right">
+
+                <ImageView
+                    android:id="@+id/fire5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="-6dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_toEndOf="@+id/iv5"
+                    android:layout_toRightOf="@+id/iv5" />
+
+                <ImageView
+                    android:id="@+id/iv5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/che5" />
+
+            </com.xiong.test30.wdiget.CarView>
+
+            <com.xiong.test30.wdiget.CarView
+                android:id="@+id/rl6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="-5dp"
+                android:gravity="right">
+
+                <ImageView
+                    android:id="@+id/fire6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="-6dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_toEndOf="@+id/iv6"
+                    android:layout_toRightOf="@+id/iv6" />
+
+                <ImageView
+                    android:id="@+id/iv6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/che6" />
+
+            </com.xiong.test30.wdiget.CarView>
+
+            <com.xiong.test30.wdiget.CarView
+                android:id="@+id/rl7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="-5dp"
+                android:gravity="right">
+
+                <ImageView
+                    android:id="@+id/fire7"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="-6dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_toEndOf="@+id/iv7"
+                    android:layout_toRightOf="@+id/iv7" />
+
+                <ImageView
+                    android:id="@+id/iv7"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/che7" />
+
+            </com.xiong.test30.wdiget.CarView>
+
+            <com.xiong.test30.wdiget.CarView
+                android:id="@+id/rl8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="-5dp"
+                android:gravity="right">
+
+                <ImageView
+                    android:id="@+id/fire8"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="-6dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_toEndOf="@+id/iv8"
+                    android:layout_toRightOf="@+id/iv8" />
+
+                <ImageView
+                    android:id="@+id/iv8"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/che8" />
+
+            </com.xiong.test30.wdiget.CarView>
+
+            <com.xiong.test30.wdiget.CarView
+                android:id="@+id/rl9"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="-5dp"
+                android:gravity="right">
+
+                <ImageView
+                    android:id="@+id/fire9"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="-6dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_toEndOf="@+id/iv9"
+                    android:layout_toRightOf="@+id/iv9" />
+
+                <ImageView
+                    android:id="@+id/iv9"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/che9" />
+
+            </com.xiong.test30.wdiget.CarView>
+
+            <com.xiong.test30.wdiget.CarView
+                android:id="@+id/rl10"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="-5dp"
+                android:gravity="right">
+
+                <ImageView
+                    android:id="@+id/fire10"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="-6dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_toEndOf="@+id/iv10"
+                    android:layout_toRightOf="@+id/iv10" />
+
+                <ImageView
+                    android:id="@+id/iv10"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/che10" />
+
+            </com.xiong.test30.wdiget.CarView>
+
+
+        </LinearLayout>
+
+    </FrameLayout>
+
+    <Button
+        android:id="@+id/start"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="开始" />
+
+    <Button
+        android:id="@+id/stop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="结束" />
+
+
+</LinearLayout>
