@@ -116,15 +116,34 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void stop() {
+        rl.setStopTime(1000);
         rl.stop();
+
+        rl2.setStopTime(1500);
         rl2.stop();
+
+        rl3.setStopTime(2000);
         rl3.stop();
+
+        rl4.setStopTime(2200);
         rl4.stop();
+
+        rl5.setStopTime(2600);
         rl5.stop();
+
+        rl6.setStopTime(3000);
         rl6.stop();
+
+        rl7.setStopTime(3300);
         rl7.stop();
+
+        rl8.setStopTime(3900);
         rl8.stop();
+
+        rl9.setStopTime(4200);
         rl9.stop();
+
+        rl10.setStopTime(4800);
         rl10.stop();
     }
 }

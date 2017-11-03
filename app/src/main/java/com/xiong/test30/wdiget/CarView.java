@@ -34,6 +34,7 @@ public class CarView extends RelativeLayout {
     private AnimatorSet animSet1;
 
     private boolean isStop;
+    private int stopTime;
 
     public CarView(Context context) {
         super(context);
@@ -122,7 +123,7 @@ public class CarView extends RelativeLayout {
                     fire.setVisibility(View.INVISIBLE);
                     animationDrawable.stop();
                     if (isStop) {
-                        initStopAnimator(wh, cv, fire, animationDrawable, 1000);
+                        initStopAnimator(wh, cv, fire, animationDrawable);
                     }
                 }
             }
@@ -139,7 +140,7 @@ public class CarView extends RelativeLayout {
                 fire.setVisibility(View.INVISIBLE);
                 animationDrawable.stop();
                 if (isStop) {
-                    initStopAnimator(wh, cv, fire, animationDrawable, 1000);
+                    initStopAnimator(wh, cv, fire, animationDrawable);
                 }
             }
         });
@@ -154,7 +155,7 @@ public class CarView extends RelativeLayout {
                 fire.setVisibility(View.INVISIBLE);
                 animationDrawable.stop();
                 if (isStop) {
-                    initStopAnimator(wh, cv, fire, animationDrawable, 1000);
+                    initStopAnimator(wh, cv, fire, animationDrawable);
                 }
             }
         });
@@ -168,10 +169,10 @@ public class CarView extends RelativeLayout {
      * @param fire
      * @param animationDrawable
      */
-    private void initStopAnimator(int wh, final CarView cv, final ImageView fire, final AnimationDrawable animationDrawable, int time) {
+    private void initStopAnimator(int wh, final CarView cv, final ImageView fire, final AnimationDrawable animationDrawable) {
         float a = (wh - cv.getX() - cv.getMeasuredWidth());
         valueAnimator3 = ValueAnimator.ofFloat(-a, -(wh + cv.getX()));
-        valueAnimator3.setDuration(time);
+        valueAnimator3.setDuration(stopTime);
         valueAnimator3.setTarget(cv);
         // 冲线
         valueAnimator3.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
@@ -228,5 +229,9 @@ public class CarView extends RelativeLayout {
             initAnimation(width, cv, fire);
             animSet.start();
         }
+    }
+
+    public void setStopTime(int stopTime) {
+        this.stopTime = stopTime;
     }
 }
