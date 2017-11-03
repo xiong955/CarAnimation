@@ -25,15 +25,14 @@ import java.util.Random;
 public class CarView extends RelativeLayout {
 
 
-    private ValueAnimator valueAnimator;
     private ValueAnimator valueAnimator1;
     private ValueAnimator valueAnimator2;
-    private ValueAnimator valueAnimator3;
 
     private AnimatorSet animSet;
     private AnimatorSet animSet1;
 
     private boolean isStop;
+    private boolean isFire;
     private int stopTime;
 
     public CarView(Context context) {
@@ -58,7 +57,7 @@ public class CarView extends RelativeLayout {
         final AnimationDrawable animationDrawable = (AnimationDrawable) fire.getDrawable();
 
         // 开始
-        valueAnimator = ValueAnimator.ofFloat(fire.getX(), -(wh/5*3));
+        ValueAnimator valueAnimator = ValueAnimator.ofFloat(fire.getX(), -(wh/5*3));
         valueAnimator.setDuration(new Random().nextInt(4000) + 2000);
         valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
@@ -164,39 +163,42 @@ public class CarView extends RelativeLayout {
     /**
      * 冲线动画
      *
-     * @param wh
-     * @param cv
-     * @param fire
-     * @param animationDrawable
+     * @param wh 屏幕宽度
+     * @param cv cv
+     * @param fire image
+     * @param animationDrawable 喷火动画
      */
     private void initStopAnimator(int wh, final CarView cv, final ImageView fire, final AnimationDrawable animationDrawable) {
         float a = (wh - cv.getX() - cv.getMeasuredWidth());
-        valueAnimator3 = ValueAnimator.ofFloat(-a, -(wh + cv.getX()));
-        valueAnimator3.setDuration(stopTime);
-        valueAnimator3.setTarget(cv);
-        // 冲线
-        valueAnimator3.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+        ValueAnimator valueAnimator = ValueAnimator.ofFloat(-a, -(wh + cv.getX()));
+        valueAnimator.setDuration(stopTime);
+        valueAnimator.setTarget(cv);
+        valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public void onAnimationUpdate(ValueAnimator animation) {
                 cv.setTranslationX((Float) animation.getAnimatedValue());
             }
         });
-        valueAnimator3.addListener(new AnimatorListenerAdapter() {
+        valueAnimator.addListener(new AnimatorListenerAdapter() {
             @Override
             public void onAnimationStart(Animator animation) {
                 super.onAnimationStart(animation);
-                fire.setVisibility(View.VISIBLE);
-                animationDrawable.start();
+                if(isFire) {
+                    fire.setVisibility(View.VISIBLE);
+                    animationDrawable.start();
+                }
             }
 
             @Override
             public void onAnimationEnd(Animator animation) {
                 super.onAnimationEnd(animation);
-                fire.setVisibility(View.INVISIBLE);
-                animationDrawable.stop();
+                if(isFire) {
+                    fire.setVisibility(View.INVISIBLE);
+                    animationDrawable.stop();
+                }
             }
         });
-        valueAnimator3.start();
+        valueAnimator.start();
     }
 
     /**
@@ -218,9 +220,9 @@ public class CarView extends RelativeLayout {
     /**
      * 开始动画
      *
-     * @param width
-     * @param cv
-     * @param fire
+     * @param width 屏幕宽度
+     * @param cv cv
+     * @param fire image
      */
     public void start(int width, final CarView cv, ImageView fire) {
         isStop = false;
@@ -233,5 +235,9 @@ public class CarView extends RelativeLayout {
 
     public void setStopTime(int stopTime) {
         this.stopTime = stopTime;
+    }
+
+    public void IsFire(boolean isfire) {
+        this.isFire = isfire;
     }
 }

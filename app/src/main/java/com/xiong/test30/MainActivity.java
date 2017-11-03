@@ -6,9 +6,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 
 import com.xiong.test30.wdiget.CarView;
+import com.xiong.test30.wdiget.CartView;
+
+import java.util.Random;
 
 /**
  * @author: xiong
@@ -17,6 +21,8 @@ import com.xiong.test30.wdiget.CarView;
  */
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+
+    private CartView bg;
 
     private CarView rl;
     private CarView rl2;
@@ -40,8 +46,21 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private ImageView fire9;
     private ImageView fire10;
 
+    private EditText et1;
+    private EditText et2;
+    private EditText et3;
+    private EditText et4;
+    private EditText et5;
+    private EditText et6;
+    private EditText et7;
+    private EditText et8;
+    private EditText et9;
+    private EditText et10;
+
     private Button start;
     private Button stop;
+    private Button cancel;
+    private Button random;
 
     private int mWidth;
 
@@ -55,6 +74,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void initView() {
+        bg = findViewById(R.id.bg);
+
         rl = findViewById(R.id.rl);
         rl2 = findViewById(R.id.rl2);
         rl3 = findViewById(R.id.rl3);
@@ -77,10 +98,25 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         fire9 = findViewById(R.id.fire9);
         fire10 = findViewById(R.id.fire10);
 
+        et1 = findViewById(R.id.et1);
+        et2 = findViewById(R.id.et2);
+        et3 = findViewById(R.id.et3);
+        et4 = findViewById(R.id.et4);
+        et5 = findViewById(R.id.et5);
+        et6 = findViewById(R.id.et6);
+        et7 = findViewById(R.id.et7);
+        et8 = findViewById(R.id.et8);
+        et9 = findViewById(R.id.et9);
+        et10 = findViewById(R.id.et10);
+
         start = findViewById(R.id.start);
         stop = findViewById(R.id.stop);
+        cancel = findViewById(R.id.cancel);
+        random = findViewById(R.id.random);
         start.setOnClickListener(this);
         stop.setOnClickListener(this);
+        cancel.setOnClickListener(this);
+        random.setOnClickListener(this);
     }
 
     @Override
@@ -92,6 +128,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             case R.id.stop:
                 stop();
+                break;
+
+            case R.id.cancel:
+                cancel();
+                break;
+
+            case R.id.random:
+                random();
                 break;
 
             default:
@@ -113,37 +157,123 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         rl8.start(mWidth, rl8, fire8);
         rl9.start(mWidth, rl9, fire9);
         rl10.start(mWidth, rl10, fire10);
+
+        bg.start();
     }
 
     private void stop() {
-        rl.setStopTime(1000);
-        rl.stop();
+        bg.stop();
 
-        rl2.setStopTime(1500);
-        rl2.stop();
+        stop(et1.getText().toString(), 1000, true);
+        stop(et2.getText().toString(), 1300, true);
+        stop(et3.getText().toString(), 1600, true);
+        stop(et4.getText().toString(), 1900, false);
+        stop(et5.getText().toString(), 2100, false);
+        stop(et6.getText().toString(), 2400, false);
+        stop(et7.getText().toString(), 2700, false);
+        stop(et8.getText().toString(), 3000, false);
+        stop(et9.getText().toString(), 3300, false);
+        stop(et10.getText().toString(), 3600, false);
+    }
 
-        rl3.setStopTime(2000);
-        rl3.stop();
+    private void stop(String index, int time, boolean IsFire) {
+        switch (index) {
+            case "1":
+                rl.setStopTime(time);
+                rl.IsFire(IsFire);
+                rl.stop();
+                break;
 
-        rl4.setStopTime(2200);
-        rl4.stop();
+            case "2":
+                rl2.setStopTime(time);
+                rl2.IsFire(IsFire);
+                rl2.stop();
+                break;
 
-        rl5.setStopTime(2600);
-        rl5.stop();
+            case "3":
+                rl3.setStopTime(time);
+                rl3.IsFire(IsFire);
+                rl3.stop();
+                break;
 
-        rl6.setStopTime(3000);
-        rl6.stop();
+            case "4":
+                rl4.setStopTime(time);
+                rl4.IsFire(IsFire);
+                rl4.stop();
+                break;
 
-        rl7.setStopTime(3300);
-        rl7.stop();
+            case "5":
+                rl5.setStopTime(time);
+                rl5.IsFire(IsFire);
+                rl5.stop();
+                break;
 
-        rl8.setStopTime(3900);
-        rl8.stop();
+            case "6":
+                rl6.setStopTime(time);
+                rl6.IsFire(IsFire);
+                rl6.stop();
+                break;
 
-        rl9.setStopTime(4200);
-        rl9.stop();
+            case "7":
+                rl7.setStopTime(time);
+                rl7.IsFire(IsFire);
+                rl7.stop();
+                break;
 
-        rl10.setStopTime(4800);
-        rl10.stop();
+            case "8":
+                rl8.setStopTime(time);
+                rl8.IsFire(IsFire);
+                rl8.stop();
+                break;
+
+            case "9":
+                rl9.setStopTime(time);
+                rl9.IsFire(IsFire);
+                rl9.stop();
+                break;
+
+            case "10":
+                rl10.setStopTime(time);
+                rl10.IsFire(IsFire);
+                rl10.stop();
+                break;
+        }
+    }
+
+    private void cancel() {
+        et1.setText("");
+        et2.setText("");
+        et3.setText("");
+        et4.setText("");
+        et5.setText("");
+        et6.setText("");
+        et7.setText("");
+        et8.setText("");
+        et9.setText("");
+        et10.setText("");
+    }
+
+    private void random() {
+        int[] list = new int[10];
+        for (int i = 1; i < 11; i++) {
+            list[i-1] = i;
+        }
+        Random random = new Random();
+        for (int i = 0; i < 10; i++) {
+            int p = random.nextInt(10);
+            int tmp = list[i];
+            list[i] = list[p];
+            list[p] = tmp;
+        }
+        et1.setText(list[0]+"");
+        et2.setText(list[1]+"");
+        et3.setText(list[2]+"");
+        et4.setText(list[3]+"");
+        et5.setText(list[4]+"");
+        et6.setText(list[5]+"");
+        et7.setText(list[6]+"");
+        et8.setText(list[7]+"");
+        et9.setText(list[8]+"");
+        et10.setText(list[9]+"");
     }
 }

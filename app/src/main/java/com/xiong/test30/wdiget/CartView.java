@@ -25,6 +25,8 @@ public class CartView extends View {
     private int mOffsetX;
     //中路跑段
     private Bitmap mMiddleRunwayBitmap;
+    // 跑道动画
+    private ValueAnimator animator;
 
     public CartView(Context context) {
         this(context,null);
@@ -67,7 +69,7 @@ public class CartView extends View {
         int height = measureDimension(defaultHeight, heightMeasureSpec);
         setMeasuredDimension(width, height);
         //动画 动起来
-        ValueAnimator animator = ValueAnimator.ofInt(0, width);
+        animator = ValueAnimator.ofInt(0, width);
         animator.setDuration(1000);
         animator.setInterpolator(new LinearInterpolator());
         animator.setRepeatCount(ValueAnimator.INFINITE);
@@ -79,7 +81,6 @@ public class CartView extends View {
                 invalidate();
             }
         });
-        animator.start();
     }
     /** 控件大小 */
     protected int measureDimension(int defaultSize, int measureSpec) {
@@ -99,5 +100,17 @@ public class CartView extends View {
     private void initMiddleRunwayBitmap(int defaultWidth){
         Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.middle_runway);
         mMiddleRunwayBitmap = BitmapUtil.scaleBitmap(bitmap, defaultWidth, 0);
+    }
+
+    public void start() {
+        if(!animator.isRunning()){
+            animator.start();
+        }
+    }
+
+    public void stop(){
+        if(animator.isRunning()){
+            animator.cancel();
+        }
     }
 }
