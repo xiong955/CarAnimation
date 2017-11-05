@@ -55,13 +55,15 @@ public class CarView extends RelativeLayout {
     }
 
     private void initAnimation(final int wh, final CarView cv, final ImageView fire) {
+        fire.setVisibility(View.INVISIBLE);
         fire.setImageResource(R.drawable.fire);
         final AnimationDrawable animationDrawable = (AnimationDrawable) fire.getDrawable();
 
         // 开始
         startPoint = wh - fire.getX();
-        ValueAnimator valueAnimator = ValueAnimator.ofFloat(fire.getX(), -(wh/5*3));
-        valueAnimator.setDuration(new Random().nextInt(4000) + 2000);
+        ValueAnimator valueAnimator = ValueAnimator.ofFloat(fire.getX(), -(wh / 6 * 2));
+        final int animatorRandom = new Random().nextInt(10000) + 3000;
+        valueAnimator.setDuration(animatorRandom);
         valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public void onAnimationUpdate(ValueAnimator animation) {
@@ -72,15 +74,18 @@ public class CarView extends RelativeLayout {
             @Override
             public void onAnimationStart(Animator animation) {
                 super.onAnimationStart(animation);
-                fire.setVisibility(View.VISIBLE);
-                animationDrawable.start();
+                if (animatorRandom < 6500) {
+                    fire.setVisibility(View.VISIBLE);
+                    animationDrawable.start();
+                }
             }
         });
         valueAnimator.setTarget(cv);
 
         // 前进
-        valueAnimator1 = ValueAnimator.ofFloat(0, -(wh/5*3));
-        valueAnimator1.setDuration(new Random().nextInt(3000) + 1000);
+        valueAnimator1 = ValueAnimator.ofFloat(0, -(wh / 6 * 2));
+        final int animatorRandom1 = new Random().nextInt(10000) + 4000;
+        valueAnimator1.setDuration(animatorRandom1);
         valueAnimator1.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public void onAnimationUpdate(ValueAnimator animation) {
@@ -91,15 +96,17 @@ public class CarView extends RelativeLayout {
             @Override
             public void onAnimationStart(Animator animation) {
                 super.onAnimationStart(animation);
-                fire.setVisibility(View.VISIBLE);
-                animationDrawable.start();
+                if (animatorRandom1 < 7000) {
+                    fire.setVisibility(View.VISIBLE);
+                    animationDrawable.start();
+                }
             }
         });
         valueAnimator1.setTarget(cv);
 
         // 后退
-        valueAnimator2 = ValueAnimator.ofFloat(-(wh/5*3), 0);
-        valueAnimator2.setDuration(new Random().nextInt(5000) + 4000);
+        valueAnimator2 = ValueAnimator.ofFloat(-(wh / 6 * 2), 0);
+        valueAnimator2.setDuration(new Random().nextInt(10000) + 5000);
         valueAnimator2.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public void onAnimationUpdate(ValueAnimator animation) {
@@ -118,14 +125,16 @@ public class CarView extends RelativeLayout {
             public void onAnimationEnd(Animator animation) {
                 super.onAnimationEnd(animation);
                 if (!isStop) {
-                    valueAnimator1.setDuration(new Random().nextInt(3000) + 1000);
-                    valueAnimator2.setDuration(new Random().nextInt(5000) + 4000);
+                    valueAnimator1.setDuration(new Random().nextInt(10000) + 3000);
+                    valueAnimator2.setDuration(new Random().nextInt(10000) + 5000);
                     animSet1.start();
                 } else {
-                    fire.setVisibility(View.INVISIBLE);
-                    animationDrawable.stop();
-                    if (isStop) {
-                        initStopAnimator(wh, cv, fire, animationDrawable);
+                    if (animationDrawable.isRunning()) {
+                        fire.setVisibility(View.INVISIBLE);
+                        animationDrawable.stop();
+                        if (isStop) {
+                            initStopAnimator(wh, cv, fire, animationDrawable);
+                        }
                     }
                 }
             }
@@ -166,9 +175,9 @@ public class CarView extends RelativeLayout {
     /**
      * 冲线动画
      *
-     * @param wh 屏幕宽度
-     * @param cv cv
-     * @param fire image
+     * @param wh                屏幕宽度
+     * @param cv                cv
+     * @param fire              image
      * @param animationDrawable 喷火动画
      */
     private void initStopAnimator(int wh, final CarView cv, final ImageView fire, final AnimationDrawable animationDrawable) {
@@ -186,7 +195,7 @@ public class CarView extends RelativeLayout {
             @Override
             public void onAnimationStart(Animator animation) {
                 super.onAnimationStart(animation);
-                if(isFire) {
+                if (isFire) {
                     fire.setVisibility(View.VISIBLE);
                     animationDrawable.start();
                 }
@@ -195,7 +204,7 @@ public class CarView extends RelativeLayout {
             @Override
             public void onAnimationEnd(Animator animation) {
                 super.onAnimationEnd(animation);
-                if(isFire) {
+                if (isFire) {
                     fire.setVisibility(View.INVISIBLE);
                     animationDrawable.stop();
                 }
@@ -224,8 +233,8 @@ public class CarView extends RelativeLayout {
      * 开始动画
      *
      * @param width 屏幕宽度
-     * @param cv cv
-     * @param fire image
+     * @param cv    cv
+     * @param fire  image
      */
     public void start(int width, final CarView cv, ImageView fire) {
         isStop = false;
@@ -238,6 +247,7 @@ public class CarView extends RelativeLayout {
 
     /**
      * 设置冲线结束时间
+     *
      * @param stopTime 结束时间
      */
     public void setStopTime(int stopTime) {
@@ -246,6 +256,7 @@ public class CarView extends RelativeLayout {
 
     /**
      * 冲线是否喷火
+     *
      * @param isfire 前三
      */
     public void IsFire(boolean isfire) {
@@ -255,7 +266,7 @@ public class CarView extends RelativeLayout {
     /**
      * 重置布局
      */
-    public void reset(){
+    public void reset() {
         this.setX(startPoint);
     }
 }
