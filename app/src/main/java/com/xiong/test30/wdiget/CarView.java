@@ -117,8 +117,10 @@ public class CarView extends RelativeLayout {
             @Override
             public void onAnimationStart(Animator animation) {
                 super.onAnimationStart(animation);
-                fire.setVisibility(View.INVISIBLE);
-                animationDrawable.stop();
+                if(animationDrawable.isRunning()) {
+                    fire.setVisibility(View.INVISIBLE);
+                    animationDrawable.stop();
+                }
             }
 
             @Override
@@ -148,8 +150,10 @@ public class CarView extends RelativeLayout {
             @Override
             public void onAnimationCancel(Animator animation) {
                 super.onAnimationCancel(animation);
-                fire.setVisibility(View.INVISIBLE);
-                animationDrawable.stop();
+                if(animationDrawable.isRunning()) {
+                    fire.setVisibility(View.INVISIBLE);
+                    animationDrawable.stop();
+                }
                 if (isStop) {
                     initStopAnimator(wh, cv, fire, animationDrawable);
                 }
@@ -163,8 +167,10 @@ public class CarView extends RelativeLayout {
             @Override
             public void onAnimationCancel(Animator animation) {
                 super.onAnimationCancel(animation);
-                fire.setVisibility(View.INVISIBLE);
-                animationDrawable.stop();
+                if(animationDrawable.isRunning()) {
+                    fire.setVisibility(View.INVISIBLE);
+                    animationDrawable.stop();
+                }
                 if (isStop) {
                     initStopAnimator(wh, cv, fire, animationDrawable);
                 }
