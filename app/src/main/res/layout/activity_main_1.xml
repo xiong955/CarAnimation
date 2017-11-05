@@ -8,6 +8,122 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
+        <LinearLayout
+            android:visibility="gone"
+            android:id="@+id/lottery"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_lottery">
+
+            <View
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="0dp"/>
+
+            <LinearLayout
+                android:gravity="center"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:orientation="vertical"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:id="@+id/lottery_ll_no2"
+                    android:gravity="center"
+                    android:layout_width="wrap_content"
+                    android:background="@drawable/ic_secondplace"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/lottery_tv_no2"
+                        android:layout_marginBottom="5dp"
+                        android:textColor="@android:color/white"
+                        android:text="1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+                <ImageView
+                    android:id="@+id/lottery_iv_no1"
+                    android:background="@drawable/ic_c1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:gravity="center"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:orientation="vertical"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:id="@+id/lottery_ll_no1"
+                    android:gravity="center"
+                    android:layout_width="wrap_content"
+                    android:background="@drawable/ic_firstplace"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/lottery_tv_no1"
+                        android:layout_marginBottom="6dp"
+                        android:textColor="@android:color/white"
+                        android:text="2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+                <ImageView
+                    android:layout_marginTop="8dp"
+                    android:id="@+id/lottery_iv_no2"
+                    android:background="@drawable/ic_c2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:gravity="center"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:orientation="vertical"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:id="@+id/lottery_ll_no3"
+                    android:gravity="center"
+                    android:layout_width="wrap_content"
+                    android:background="@drawable/ic_thirdplace"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/lottery_tv_no3"
+                        android:layout_marginBottom="5dp"
+                        android:textColor="@android:color/white"
+                        android:text="3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+                <ImageView
+                    android:id="@+id/lottery_iv_no3"
+                    android:background="@drawable/ic_c3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="0dp"/>
+
+        </LinearLayout>
+
         <com.xiong.test30.wdiget.CartView
             android:id="@+id/bg"
             android:layout_width="match_parent"
@@ -373,7 +489,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
         <TextView
             android:text="输入0-10,切不能重复,输入完点结束就可看到结果"
@@ -381,5 +497,11 @@
             android:layout_height="wrap_content" />
 
     </LinearLayout>
+
+    <Button
+        android:id="@+id/reset"
+        android:text="重置布局"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 
 </LinearLayout>

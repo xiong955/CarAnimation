@@ -2,13 +2,17 @@ package com.xiong.test30;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
+import com.xiong.test30.util.LotteryUtil;
 import com.xiong.test30.wdiget.CarView;
 import com.xiong.test30.wdiget.CartView;
 
@@ -22,6 +26,8 @@ import java.util.Random;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
+    // 跑动部分
+    private LinearLayout che;
     private CartView bg;
 
     private CarView rl;
@@ -61,8 +67,28 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Button stop;
     private Button cancel;
     private Button random;
+    private Button reset;
 
     private int mWidth;
+
+    //开奖部分
+    private LinearLayout mLottery;
+    private LinearLayout mLineNO_1;
+    private LinearLayout mLineNO_2;
+    private LinearLayout mLineNO_3;
+    private TextView mTvNO_1;
+    private TextView mTvNO_2;
+    private TextView mTvNO_3;
+    private ImageView mIvNO_1;
+    private ImageView mIvNO_2;
+    private ImageView mIvNO_3;
+
+
+    //
+    private int[] lotteryCar = {R.drawable.ic_c1, R.drawable.ic_c2, R.drawable.ic_c3,
+            R.drawable.ic_c4, R.drawable.ic_c5, R.drawable.ic_c6, R.drawable.ic_c7,
+            R.drawable.ic_c8, R.drawable.ic_c9, R.drawable.ic_c10};
+    private Handler handler = new Handler();
 
     @SuppressLint("NewApi")
     @Override
@@ -71,9 +97,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main_1);
 
         initView();
+        initLottery();
     }
 
     private void initView() {
+        che = findViewById(R.id.ll);
         bg = findViewById(R.id.bg);
 
         rl = findViewById(R.id.rl);
@@ -113,10 +141,25 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         stop = findViewById(R.id.stop);
         cancel = findViewById(R.id.cancel);
         random = findViewById(R.id.random);
+        reset= findViewById(R.id.reset);
         start.setOnClickListener(this);
         stop.setOnClickListener(this);
         cancel.setOnClickListener(this);
         random.setOnClickListener(this);
+        reset.setOnClickListener(this);
+    }
+
+    private void initLottery() {
+        mLottery = findViewById(R.id.lottery);
+        mLineNO_1 = findViewById(R.id.lottery_ll_no1);
+        mLineNO_2 = findViewById(R.id.lottery_ll_no2);
+        mLineNO_3 = findViewById(R.id.lottery_ll_no3);
+        mTvNO_1 = findViewById(R.id.lottery_tv_no1);
+        mTvNO_2 = findViewById(R.id.lottery_tv_no2);
+        mTvNO_3 = findViewById(R.id.lottery_tv_no3);
+        mIvNO_1 = findViewById(R.id.lottery_iv_no1);
+        mIvNO_2 = findViewById(R.id.lottery_iv_no2);
+        mIvNO_3 = findViewById(R.id.lottery_iv_no3);
     }
 
     @Override
@@ -138,11 +181,30 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 random();
                 break;
 
+            case R.id.reset:
+                reset();
+                break;
+
             default:
                 break;
         }
     }
 
+    Runnable runnable = new Runnable() {
+        @Override
+        public void run() {
+            che.setVisibility(View.GONE);
+            bg.setVisibility(View.GONE);
+            mLottery.setVisibility(View.VISIBLE);
+            LotteryUtil.setAnimation(mLineNO_1);
+            LotteryUtil.setAnimation(mLineNO_2);
+            LotteryUtil.setAnimation(mLineNO_3);
+        }
+    };
+
+    /**
+     * 开始
+     */
     private void start() {
         WindowManager wm = this.getWindowManager();
         mWidth = wm.getDefaultDisplay().getWidth();
@@ -174,8 +236,25 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         stop(et8.getText().toString(), 3000, false);
         stop(et9.getText().toString(), 3300, false);
         stop(et10.getText().toString(), 3600, false);
+
+        carNO(et1.getText().toString(),et2.getText().toString(),et3.getText().toString());
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    Thread.sleep(4000);
+                    handler.post(runnable);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        }).start();
     }
 
+    /**
+     * 结束
+     */
     private void stop(String index, int time, boolean IsFire) {
         switch (index) {
             case "1":
@@ -240,6 +319,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
+    /**
+     * 清空
+     */
     private void cancel() {
         et1.setText("");
         et2.setText("");
@@ -253,10 +335,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         et10.setText("");
     }
 
+    /**
+     * 随机
+     */
     private void random() {
         int[] list = new int[10];
         for (int i = 1; i < 11; i++) {
-            list[i-1] = i;
+            list[i - 1] = i;
         }
         Random random = new Random();
         for (int i = 0; i < 10; i++) {
@@ -265,15 +350,47 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             list[i] = list[p];
             list[p] = tmp;
         }
-        et1.setText(list[0]+"");
-        et2.setText(list[1]+"");
-        et3.setText(list[2]+"");
-        et4.setText(list[3]+"");
-        et5.setText(list[4]+"");
-        et6.setText(list[5]+"");
-        et7.setText(list[6]+"");
-        et8.setText(list[7]+"");
-        et9.setText(list[8]+"");
-        et10.setText(list[9]+"");
+        et1.setText(list[0] + "");
+        et2.setText(list[1] + "");
+        et3.setText(list[2] + "");
+        et4.setText(list[3] + "");
+        et5.setText(list[4] + "");
+        et6.setText(list[5] + "");
+        et7.setText(list[6] + "");
+        et8.setText(list[7] + "");
+        et9.setText(list[8] + "");
+        et10.setText(list[9] + "");
+    }
+
+    /**
+     * 开奖界面
+     */
+    private void carNO(String no1,String no2,String no3) {
+        mTvNO_1.setText(no1);
+        mIvNO_1.setBackgroundResource(lotteryCar[Integer.valueOf(no1)-1]);
+        mTvNO_2.setText(no2);
+        mIvNO_2.setBackgroundResource(lotteryCar[Integer.valueOf(no2)-1]);
+        mTvNO_3.setText(no3);
+        mIvNO_3.setBackgroundResource(lotteryCar[Integer.valueOf(no3)-1]);
+    }
+
+    /**
+     * 重置动画布局
+     */
+    private void reset() {
+        rl.reset();
+        rl2.reset();
+        rl3.reset();
+        rl4.reset();
+        rl5.reset();
+        rl6.reset();
+        rl7.reset();
+        rl8.reset();
+        rl9.reset();
+        rl10.reset();
+        cancel();
+        mLottery.setVisibility(View.GONE);
+        che.setVisibility(View.VISIBLE);
+        bg.setVisibility(View.VISIBLE);
     }
 }

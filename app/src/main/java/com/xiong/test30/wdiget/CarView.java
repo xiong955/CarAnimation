@@ -35,6 +35,8 @@ public class CarView extends RelativeLayout {
     private boolean isFire;
     private int stopTime;
 
+    private float startPoint;
+
     public CarView(Context context) {
         super(context);
     }
@@ -57,6 +59,7 @@ public class CarView extends RelativeLayout {
         final AnimationDrawable animationDrawable = (AnimationDrawable) fire.getDrawable();
 
         // 开始
+        startPoint = wh - fire.getX();
         ValueAnimator valueAnimator = ValueAnimator.ofFloat(fire.getX(), -(wh/5*3));
         valueAnimator.setDuration(new Random().nextInt(4000) + 2000);
         valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
@@ -233,11 +236,26 @@ public class CarView extends RelativeLayout {
         }
     }
 
+    /**
+     * 设置冲线结束时间
+     * @param stopTime 结束时间
+     */
     public void setStopTime(int stopTime) {
         this.stopTime = stopTime;
     }
 
+    /**
+     * 冲线是否喷火
+     * @param isfire 前三
+     */
     public void IsFire(boolean isfire) {
         this.isFire = isfire;
+    }
+
+    /**
+     * 重置布局
+     */
+    public void reset(){
+        this.setX(startPoint);
     }
 }
