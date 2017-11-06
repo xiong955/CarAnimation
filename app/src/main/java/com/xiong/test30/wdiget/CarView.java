@@ -8,6 +8,7 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.drawable.AnimationDrawable;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -61,9 +62,8 @@ public class CarView extends RelativeLayout {
 
         // 开始
         startPoint = wh - fire.getX();
-        ValueAnimator valueAnimator = ValueAnimator.ofFloat(fire.getX(), -(wh / 6 * 2));
-        final int animatorRandom = new Random().nextInt(10000) + 3000;
-        valueAnimator.setDuration(animatorRandom);
+        final ValueAnimator valueAnimator = ValueAnimator.ofFloat(fire.getX(), -(wh / 6 * 2));
+        valueAnimator.setDuration(new Random().nextInt(10000) + 3000);
         valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public void onAnimationUpdate(ValueAnimator animation) {
@@ -71,10 +71,11 @@ public class CarView extends RelativeLayout {
             }
         });
         valueAnimator.addListener(new AnimatorListenerAdapter() {
+            @SuppressLint("NewApi")
             @Override
             public void onAnimationStart(Animator animation) {
                 super.onAnimationStart(animation);
-                if (animatorRandom < 6500) {
+                if (valueAnimator.getTotalDuration() < 6500) {
                     fire.setVisibility(View.VISIBLE);
                     animationDrawable.start();
                 }
@@ -84,8 +85,7 @@ public class CarView extends RelativeLayout {
 
         // 前进
         valueAnimator1 = ValueAnimator.ofFloat(0, -(wh / 6 * 2));
-        final int animatorRandom1 = new Random().nextInt(10000) + 4000;
-        valueAnimator1.setDuration(animatorRandom1);
+        valueAnimator1.setDuration(new Random().nextInt(10000) + 4000);
         valueAnimator1.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public void onAnimationUpdate(ValueAnimator animation) {
@@ -93,10 +93,13 @@ public class CarView extends RelativeLayout {
             }
         });
         valueAnimator1.addListener(new AnimatorListenerAdapter() {
+            @SuppressLint("NewApi")
             @Override
             public void onAnimationStart(Animator animation) {
                 super.onAnimationStart(animation);
-                if (animatorRandom1 < 7000) {
+                Log.e("xiong",valueAnimator1.getTotalDuration()+"");
+                if (valueAnimator1.getTotalDuration() < 7000) {
+                    Log.e("xiong","喷火");
                     fire.setVisibility(View.VISIBLE);
                     animationDrawable.start();
                 }
@@ -117,7 +120,7 @@ public class CarView extends RelativeLayout {
             @Override
             public void onAnimationStart(Animator animation) {
                 super.onAnimationStart(animation);
-                if(animationDrawable.isRunning()) {
+                if (animationDrawable.isRunning()) {
                     fire.setVisibility(View.INVISIBLE);
                     animationDrawable.stop();
                 }
@@ -131,12 +134,8 @@ public class CarView extends RelativeLayout {
                     valueAnimator2.setDuration(new Random().nextInt(10000) + 5000);
                     animSet1.start();
                 } else {
-                    if (animationDrawable.isRunning()) {
-                        fire.setVisibility(View.INVISIBLE);
-                        animationDrawable.stop();
-                        if (isStop) {
-                            initStopAnimator(wh, cv, fire, animationDrawable);
-                        }
+                    if (isStop) {
+                        initStopAnimator(wh, cv, fire, animationDrawable);
                     }
                 }
             }
@@ -150,7 +149,7 @@ public class CarView extends RelativeLayout {
             @Override
             public void onAnimationCancel(Animator animation) {
                 super.onAnimationCancel(animation);
-                if(animationDrawable.isRunning()) {
+                if (animationDrawable.isRunning()) {
                     fire.setVisibility(View.INVISIBLE);
                     animationDrawable.stop();
                 }
@@ -167,7 +166,7 @@ public class CarView extends RelativeLayout {
             @Override
             public void onAnimationCancel(Animator animation) {
                 super.onAnimationCancel(animation);
-                if(animationDrawable.isRunning()) {
+                if (animationDrawable.isRunning()) {
                     fire.setVisibility(View.INVISIBLE);
                     animationDrawable.stop();
                 }
