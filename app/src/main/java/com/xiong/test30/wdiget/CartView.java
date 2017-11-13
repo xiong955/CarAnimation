@@ -70,7 +70,7 @@ public class CartView extends View {
         setMeasuredDimension(width, height);
         //动画 动起来
         animator = ValueAnimator.ofInt(0, width);
-        animator.setDuration(1000);
+        animator.setDuration(750);
         animator.setInterpolator(new LinearInterpolator());
         animator.setRepeatCount(ValueAnimator.INFINITE);
         animator.setRepeatMode(ValueAnimator.RESTART);

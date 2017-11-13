@@ -8,7 +8,6 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.drawable.AnimationDrawable;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -97,9 +96,7 @@ public class CarView extends RelativeLayout {
             @Override
             public void onAnimationStart(Animator animation) {
                 super.onAnimationStart(animation);
-                Log.e("xiong",valueAnimator1.getTotalDuration()+"");
                 if (valueAnimator1.getTotalDuration() < 7000) {
-                    Log.e("xiong","喷火");
                     fire.setVisibility(View.VISIBLE);
                     animationDrawable.start();
                 }
